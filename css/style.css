@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap');
+
+:root {
+  --gold: #f4c430;
+  --dark-gold: #b7950b;
+  --maroon: #8e2b1c;
+  --cream: #f5f2ea;
+  --dark: #2c2c2c;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cream) url("../assets/images/pattern.png");
+}
+
+/* ================= NAVBAR ================= */
+.navbar-custom {
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+}
+
+.brand-logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold) !important;
+  font-size: 26px;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,.55),
+      rgba(0,0,0,.75)
+    ),
+    url("../assets/images/hero-bg.jpg") center/cover no-repeat;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 64px);
+  color: var(--gold);
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 500px;
+}
+
+/* ================= BUTTON ================= */
+.btn-maroon {
+  background: var(--maroon);
+  color: #fff;
+}
+
+.btn-maroon:hover {
+  background: #6e1f14;
+  color: #fff;
+}
+
+/* ================= CARD ================= */
+.custom-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+  border: none;
+}
+
+.custom-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.custom-card h5 {
+  color: var(--dark-gold);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #1f1f1f;
+  color: #fff;
+}
