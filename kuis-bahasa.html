@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kuis Bahasa Makassar</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#7b1e2b;
+  --secondary:#b32639;
+  --light:#f5f5f5;
+}
+
+body{
+  background: linear-gradient(to bottom,#f5f5f5,#ececec);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HERO */
+.header{
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:70px 20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.header::before{
+  content:'';
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  top:-100px;
+  right:-100px;
+}
+
+.header h1{
+  font-weight:800;
+  position:relative;
+  z-index:2;
+}
+
+.header p{
+  position:relative;
+  z-index:2;
+}
+
+/* INFO BAR */
+.info-bar{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  margin-top:-30px;
+  position:relative;
+  z-index:10;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* QUESTION CARD */
+.q-card{
+  background:white;
+  border:none;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.q-card:hover{
+  transform:translateY(-5px);
+}
+
+.q-card.correct{
+  border-left:8px solid #28a745;
+}
+
+.q-card.wrong{
+  border-left:8px solid #dc3545;
+}
+
+.option{
+  display:block;
+  padding:14px;
+  border:2px solid #eee;
+  border-radius:12px;
+  margin-top:12px;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.option:hover{
+  background:#fafafa;
+  border-color:var(--secondary);
+}
+
+.option.correct-answer{
+  background:#d4edda;
+  border-color:#28a745;
+}
+
+.option.wrong-answer{
+  background:#f8d7da;
+  border-color:#dc3545;
+}
+
+/* EXPLANATION */
+.explanation{
+  display:none;
+  margin-top:18px;
+  padding:16px;
+  background:#fafafa;
+  border-left:5px solid var(--primary);
+  border-radius:10px;
+}
+
+/* BUTTON */
+.btn-main{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  border:none;
+  padding:14px 35px;
+  border-radius:14px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.btn-main:hover{
+  transform:scale(1.03);
+}
+
+/* SCORE */
+.score-box{
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:35px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.score-number{
+  font-size:60px;
+  font-weight:900;
+  color:var(--primary);
+}
+
+footer{
+  margin-top:60px;
+  padding:30px;
+  background:#111;
+  color:#aaa;
+  text-align:center;
+}
+
+.progress{
+  height:12px;
+  border-radius:20px;
+}
+
+.timer{
+  font-size:22px;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🗣️ Kuis Bahasa Makassar</h1>
+  <p>Uji wawasanmu tentang budaya dan bahasa Makassar</p>
+</div>
+
+<div class="container">
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+      <div>
+        <h5 class="mb-1">Progress Quiz</h5>
+        <div class="progress" style="width:250px;">
+          <div class="progress-bar bg-danger" id="progressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="timer" id="timer">
+        ⏳ 10:00
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BACK -->
+  <div class="mt-4">
+    <a href="kuis.php" class="btn btn-outline-dark">
+      ← Kembali
+    </a>
+  </div>
+
+  <!-- QUIZ -->
+  <form id="quizForm" class="mt-4">
+
+    <!-- SOAL 1 -->
+    <div class="q-card" id="q1">
+
+      <h5 class="fw-bold">
+        1. Filosofi hidup masyarakat Makassar yang menekankan harga diri dan empati sosial adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q1" value="A">
+        Bhinneka Tunggal Ika
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="B">
+        Siri' na Pacce
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="C">
+        Tepo Seliro
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="D">
+        Mapalus
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Siri’ berarti harga diri, sedangkan Pacce berarti solidaritas sosial.
+      </div>
+
+    </div>
+
+    <!-- SOAL 2 -->
+<div class="q-card" id="q2">
+
+  <h5 class="fw-bold">
+    2. Pakaian adat perempuan Makassar yang berbentuk segi empat adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q2" value="A">
+    Kebaya
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="B">
+    Baju Cele
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="C">
+    Baju Bodo
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="D">
+    Baju Kurung
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: C</b><br>
+    Baju Bodo adalah salah satu pakaian tertua di dunia.
+  </div>
+
+</div>
+
+<!-- SOAL 3 -->
+<div class="q-card" id="q3">
+
+  <h5 class="fw-bold">
+    3. Tradisi duel dalam satu sarung menggunakan badik disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q3" value="A">
+    Tarung Derajat
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="B">
+    Sigajang Laleng Lipa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="C">
+    Ma’pasere’
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="D">
+    Mappadendang
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Tradisi duel kehormatan masyarakat Makassar.
+  </div>
+
+</div>
+
+<!-- SOAL 4 -->
+<div class="q-card" id="q4">
+
+  <h5 class="fw-bold">
+    4. Senjata tradisional Makassar yang dianggap memiliki nilai spiritual adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q4" value="A">
+    Keris
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="B">
+    Rencong
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="C">
+    Badik
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="D">
+    Parang
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: C</b><br>
+    Badik menjadi simbol kehormatan pria Makassar.
+  </div>
+
+</div>
+
+<!-- SOAL 5 -->
+<div class="q-card" id="q5">
+
+  <h5 class="fw-bold">
+    5. Kuliner khas Makassar berbasis 40 jenis rempah adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q5" value="A">
+    Sop Saudara
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="B">
+    Pallubasa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="C">
+    Coto Makassar
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="D">
+    Konro
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: C</b><br>
+    Coto Makassar memakai sekitar 40 rempah tradisional.
+  </div>
+
+</div>
+
+<!-- SOAL 6 -->
+<div class="q-card" id="q6">
+
+  <h5 class="fw-bold">
+    6. Uang belanja dalam budaya pernikahan Makassar disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q6" value="A">
+    Mahar
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="B">
+    Uang Panai'
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="C">
+    Seserahan
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="D">
+    Passolo
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Uang Panai’ merupakan simbol penghargaan keluarga perempuan.
+  </div>
+
+</div>
+
+<!-- SOAL 7 -->
+<div class="q-card" id="q7">
+
+  <h5 class="fw-bold">
+    7. Tradisi memindahkan rumah panggung disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q7" value="A">
+    Mappalette Bola
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="B">
+    Rambu Solo
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="C">
+    Mappadendang
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="D">
+    Angngaru
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: A</b><br>
+    Tradisi gotong royong memindahkan rumah tanpa dibongkar.
+  </div>
+
+</div>
+
+<!-- SOAL 8 -->
+<div class="q-card" id="q8">
+
+  <h5 class="fw-bold">
+    8. Tarian perempuan Makassar yang sangat lembut adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q8" value="A">
+    Tari Pakarena
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="B">
+    Tari Pagelu
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="C">
+    Tari Paduppa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="D">
+    Gandrang Bulo
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: A</b><br>
+    Tari Pakarena menggambarkan kelembutan perempuan Makassar.
+  </div>
+
+</div>
+
+<!-- SOAL 9 -->
+<div class="q-card" id="q9">
+
+  <h5 class="fw-bold">
+    9. Alat musik petik Makassar berbentuk perahu adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q9" value="A">
+    Sasando
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="B">
+    Kecaping
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="C">
+    Gambus
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="D">
+    Rebab
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Kecaping adalah alat musik petik khas Makassar.
+  </div>
+
+</div>
+
+<!-- SOAL 10 -->
+<div class="q-card" id="q10">
+
+  <h5 class="fw-bold">
+    10. Puisi lisan tradisional Makassar disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q10" value="A">
+    Sinrilik
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="B">
+    Kelong
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="C">
+    Paruntasayak
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="D">
+    Pakatte
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Kelong berisi nasihat dan pesan moral masyarakat Makassar.
+  </div>
+
+</div>
+
+    <div class="text-center mb-5">
+
+      <button type="button" class="btn-main" onclick="submitQuiz()">
+        Submit Quiz
+      </button>
+
+    </div>
+
+  </form>
+
+  <!-- SCORE -->
+  <div class="score-box mb-5" id="scoreBox">
+
+    <div class="score-number" id="scoreNumber">
+      0/10
+    </div>
+
+    <h3 class="fw-bold mt-3" id="scoreMessage"></h3>
+
+    <p class="text-muted" id="scorePercent"></p>
+
+    <button onclick="location.reload()" class="btn-main mt-3">
+      Ulangi Quiz
+    </button>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Balla Makassar
+</footer>
+
+<script>
+
+const answers = {
+  q1:"B",
+  q2:"C",
+  q3:"B",
+  q4:"C",
+  q5:"C",
+  q6:"B",
+  q7:"A",
+  q8:"A",
+  q9:"B",
+  q10:"B"
+};
+
+let totalQuestions = Object.keys(answers).length;
+
+/* ================= PROGRESS ================= */
+
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+
+  radio.addEventListener('change', updateProgress);
+
+});
+
+function updateProgress(){
+
+  let answered = 0;
+
+  for(let q in answers){
+
+    if(document.querySelector(`input[name="${q}"]:checked`)){
+      answered++;
+    }
+
+  }
+
+  let percent = (answered / totalQuestions) * 100;
+
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+/* ================= TIMER ================= */
+
+let timeLeft = 600;
+
+const timer = setInterval(() => {
+
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  document.getElementById("timer").innerHTML =
+    `⏳ ${minutes}:${seconds}`;
+
+  timeLeft--;
+
+  if(timeLeft < 0){
+
+    clearInterval(timer);
+
+    alert("Waktu habis! Quiz akan otomatis disubmit.");
+
+    submitQuiz(true);
+
+  }
+
+},1000);
+
+/* ================= SUBMIT ================= */
+
+function submitQuiz(forceSubmit = false){
+
+  /* VALIDASI SOAL KOSONG */
+
+  let unanswered = [];
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    if(!selected){
+      unanswered.push(q);
+    }
+
+  }
+
+  /* JIKA MASIH ADA SOAL BELUM DIISI */
+
+  if(unanswered.length > 0 && !forceSubmit){
+
+    alert(
+      `Masih ada ${unanswered.length} soal yang belum dijawab!`
+    );
+
+    document.getElementById(unanswered[0])
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    return;
+  }
+
+  clearInterval(timer);
+
+  let score = 0;
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    const card =
+      document.getElementById(q);
+
+    const explanation =
+      card.querySelector(".explanation");
+
+    explanation.style.display = "block";
+
+    const options =
+      card.querySelectorAll(".option");
+
+    options.forEach(opt => {
+
+      const input =
+        opt.querySelector("input");
+
+      input.disabled = true;
+
+      /* JAWABAN BENAR */
+
+      if(input.value === answers[q]){
+
+        opt.classList.add("correct-answer");
+
+      }
+
+      /* JAWABAN SALAH */
+
+      if(
+        selected &&
+        selected.value === input.value &&
+        selected.value !== answers[q]
+      ){
+
+        opt.classList.add("wrong-answer");
+
+      }
+
+    });
+
+    /* HITUNG SCORE */
+
+    if(selected && selected.value === answers[q]){
+
+      score++;
+
+      card.classList.add("correct");
+
+    }else{
+
+      card.classList.add("wrong");
+
+    }
+
+  }
+
+  /* ================= HASIL ================= */
+
+  const percent =
+    Math.round((score / totalQuestions) * 100);
+
+  let message = "";
+
+  if(percent >= 90){
+
+    message = "🔥 Luar biasa!";
+
+  }
+  else if(percent >= 70){
+
+    message = "👏 Bagus sekali!";
+
+  }
+  else if(percent >= 50){
+
+    message = "👍 Cukup baik!";
+
+  }
+  else{
+
+    message = "📚 Yuk belajar lagi!";
+
+  }
+
+  document.getElementById("scoreBox")
+    .style.display = "block";
+
+  document.getElementById("scoreNumber")
+    .innerHTML = `${score}/${totalQuestions}`;
+
+  document.getElementById("scoreMessage")
+    .innerHTML = message;
+
+  document.getElementById("scorePercent")
+    .innerHTML =
+      `Kamu mendapatkan ${percent}%`;
+
+  localStorage.setItem(
+    "kuisBahasaScore",
+    score
+  );
+
+  document.getElementById("scoreBox")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+</script>
+
+</body>
+</html>

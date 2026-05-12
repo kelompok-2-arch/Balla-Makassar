@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Daftar Aspek Adat & Tradisi - Balla Makassar</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root{
+      --primary:#6b0f1a;
+      --secondary:#8c1c2c;
+      --light:#f8f9fa;
+      --dark:#1f1f1f;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background:var(--light);
+      color:var(--dark);
+    }
+
+    /* NAVBAR */
+
+    .navbar-custom{
+      background:rgba(107,15,26,0.95);
+      backdrop-filter:blur(10px);
+      padding:14px 0;
+    }
+
+    .brand-logo{
+      font-size:1.3rem;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    /* HERO */
+
+    .hero{
+      background:
+      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+      url('assets/images/bg-adat.jpg') center/cover;
+
+      min-height:320px;
+
+      display:flex;
+      align-items:center;
+
+      margin-top:72px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      font-weight:700;
+      margin-bottom:15px;
+    }
+
+    .hero p{
+      font-size:1.1rem;
+      max-width:650px;
+      opacity:0.9;
+    }
+
+    /* SECTION */
+
+    .section-title{
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .section-subtitle{
+      color:#666;
+      margin-bottom:40px;
+    }
+
+    /* CARD */
+
+    .aspek-link{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .aspek-card{
+      border:none;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+
+      transition:0.35s ease;
+    }
+
+    .aspek-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    /* IMAGE RATIO */
+
+    .image-wrapper{
+      width:100%;
+      aspect-ratio:16 / 9;
+      overflow:hidden;
+      background:#ddd;
+    }
+
+    .image-wrapper img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.4s ease;
+    }
+
+    .aspek-card:hover img{
+      transform:scale(1.05);
+    }
+
+    .card-body{
+      padding:24px;
+    }
+
+    .card-body h4{
+      font-size:1.2rem;
+      line-height:1.5;
+      margin-bottom:12px;
+      min-height:90px;
+    }
+
+    .card-body p{
+      color:#555;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+
+    .article-meta{
+      font-size:0.9rem;
+      color:#888;
+      margin-bottom:15px;
+    }
+
+    .btn-custom{
+      border:1px solid var(--primary);
+      color:var(--primary);
+      border-radius:10px;
+      padding:8px 18px;
+      font-weight:500;
+      transition:0.3s ease;
+    }
+
+    .btn-custom:hover{
+      background:var(--primary);
+      color:white;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#fff;
+      padding:30px 0;
+      margin-top:60px;
+      border-top:1px solid #eee;
+      color:#666;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero{
+        min-height:260px;
+        text-align:center;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .card-body h4{
+        min-height:auto;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+
+  <div class="container">
+
+    <a class="navbar-brand brand-logo" href="index.html">
+      Balla Makassar
+    </a>
+
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero text-white">
+
+  <div class="container">
+
+    <h1>
+      Adat & Tradisi Bugis-Makassar
+    </h1>
+
+    <p>
+      Menjelajahi adat, tradisi, sistem sosial, dan nilai budaya masyarakat Bugis-Makassar melalui berbagai kajian budaya dan antropologi.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- CONTENT -->
+<section class="py-5">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Daftar Artikel
+    </h2>
+
+    <p class="section-subtitle">
+      Pilih artikel yang ingin Anda pelajari lebih dalam
+    </p>
+
+    <div class="row g-4">
+
+      <!-- CARD 1 -->
+      <div class="col-lg-6">
+
+        <a href="article/adat/artikel-adat-1.html" class="aspek-link">
+
+          <div class="card aspek-card shadow-sm h-100">
+
+            <div class="image-wrapper">
+              <img src="assets/images/adat-tradisi/gambar-adat-1.jpg" alt="Budaya Bugis Makassar">
+            </div>
+
+            <div class="card-body">
+
+              <h4 class="fw-bold">
+                Manusia dan Kebudayaan Bugis-Makassar: Struktur Sosial, Nilai, dan Warisan Budaya
+              </h4>
+
+              <div class="article-meta">
+                Kajian Antropologi Budaya
+              </div>
+
+              <p>
+                Kajian antropologis mengenai sistem sosial, nilai budaya, dan tradisi masyarakat Bugis-Makassar.
+              </p>
+
+              <button class="btn btn-custom">
+                Jelajahi
+              </button>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- CARD 2 -->
+      <div class="col-lg-6">
+
+        <a href="article/adat/artikel-adat-2.html" class="aspek-link">
+
+          <div class="card aspek-card shadow-sm h-100">
+
+            <div class="image-wrapper">
+              <img src="assets/images/adat-tradisi/gambar-adat-2.jpeg" alt="Mappettuada">
+            </div>
+
+            <div class="card-body">
+
+              <h4 class="fw-bold">
+                Implikasi Hukum Pembatalan Rencana Perkawinan Setelah Mappettuada dalam Adat Bugis Makassar
+              </h4>
+
+              <div class="article-meta">
+                Kajian Hukum Adat
+              </div>
+
+              <p>
+                Kajian hukum adat dan hukum perdata terhadap pembatalan lamaran dalam tradisi perkawinan Bugis Makassar.
+              </p>
+
+              <button class="btn btn-custom">
+                Jelajahi
+              </button>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- CARD 3 -->
+      <div class="col-lg-6">
+
+        <a href="article/adat/artikel-adat-3.html" class="aspek-link">
+
+          <div class="card aspek-card shadow-sm h-100">
+
+            <div class="image-wrapper">
+              <img src="assets/images/adat-tradisi/gambar-adat-3.jpg" alt="Uang Panai">
+            </div>
+
+            <div class="card-body">
+
+              <h4 class="fw-bold">
+                Uang Panai’ dalam Perkawinan Bugis Makassar: Tradisi, Makna, dan Perspektif Hukum
+              </h4>
+
+              <div class="article-meta">
+                Kajian Budaya dan Hukum
+              </div>
+
+              <p>
+                Kajian budaya dan hukum mengenai peran uang panai’ dalam sistem perkawinan masyarakat Bugis Makassar.
+              </p>
+
+              <button class="btn btn-custom">
+                Jelajahi
+              </button>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- CARD 4 -->
+      <div class="col-lg-6">
+
+        <a href="article/adat/artikel-adat-4.html" class="aspek-link">
+
+          <div class="card aspek-card shadow-sm h-100">
+
+            <div class="image-wrapper">
+              <img src="assets/images/adat-tradisi/gambar-adat-4.jpg" alt="Coto Makassar">
+            </div>
+
+            <div class="card-body">
+
+              <h4 class="fw-bold">
+                Coto Mangkasara sebagai Makanan Tradisional dan Identitas Daerah Kota Makassar
+              </h4>
+
+              <div class="article-meta">
+                Kajian Kuliner dan Budaya
+              </div>
+
+              <p>
+                Analisis budaya, pariwisata, dan strategi pengembangan kuliner khas Makassar.
+              </p>
+
+              <button class="btn btn-custom">
+                Jelajahi
+              </button>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="text-center">
+
+  <div class="container">
+
+    © 2026 Balla Makassar — Seluruh Hak Cipta Dilindungi
+
+  </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

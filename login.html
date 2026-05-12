@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+    }
+  </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+<div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
+  
+  <h3 class="text-center text-danger mb-3">Login</h3>
+
+  <!-- FORM LOGIN -->
+  <form action="login.php" method="POST">
+
+    <!-- USERNAME -->
+    <input 
+      type="text" 
+      name="username" 
+      class="form-control mb-3" 
+      placeholder="Masukkan Username"
+      required
+    >
+
+    <!-- PASSWORD -->
+    <input 
+      type="password" 
+      name="password" 
+      class="form-control mb-3" 
+      placeholder="Masukkan Password"
+      required
+    >
+
+    <!-- BUTTON -->
+    <button type="submit" class="btn btn-danger w-100">
+      Login
+    </button>
+
+  </form>
+
+  <!-- LINK LUPA SANDI -->
+<p class="text-center mt-2 mb-0">
+  <a href="sandi.html" class="text-decoration-none text-muted">
+    Ganti sandi?
+  </a>
+</p>
+
+  <!-- LINK DAFTAR -->
+  <p class="text-center mt-3 mb-0">
+    Belum punya akun? 
+    <a href="daftar.html" class="text-danger fw-bold">Daftar</a>
+  </p>
+
+</div>
+
+</body>
+</html>

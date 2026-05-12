@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kuis Kuliner Makassar</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#7b1e2b;
+  --secondary:#b32639;
+  --light:#f5f5f5;
+}
+
+body{
+  background: linear-gradient(to bottom,#f5f5f5,#ececec);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HERO */
+.header{
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:70px 20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.header::before{
+  content:'';
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  top:-100px;
+  right:-100px;
+}
+
+.header h1{
+  font-weight:800;
+  position:relative;
+  z-index:2;
+}
+
+.header p{
+  position:relative;
+  z-index:2;
+}
+
+/* INFO BAR */
+.info-bar{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  margin-top:-30px;
+  position:relative;
+  z-index:10;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* QUESTION CARD */
+.q-card{
+  background:white;
+  border:none;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.q-card:hover{
+  transform:translateY(-5px);
+}
+
+.q-card.correct{
+  border-left:8px solid #28a745;
+}
+
+.q-card.wrong{
+  border-left:8px solid #dc3545;
+}
+
+.option{
+  display:block;
+  padding:14px;
+  border:2px solid #eee;
+  border-radius:12px;
+  margin-top:12px;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.option:hover{
+  background:#fafafa;
+  border-color:var(--secondary);
+}
+
+.option.correct-answer{
+  background:#d4edda;
+  border-color:#28a745;
+}
+
+.option.wrong-answer{
+  background:#f8d7da;
+  border-color:#dc3545;
+}
+
+/* EXPLANATION */
+.explanation{
+  display:none;
+  margin-top:18px;
+  padding:16px;
+  background:#fafafa;
+  border-left:5px solid var(--primary);
+  border-radius:10px;
+}
+
+/* BUTTON */
+.btn-main{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  border:none;
+  padding:14px 35px;
+  border-radius:14px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.btn-main:hover{
+  transform:scale(1.03);
+}
+
+/* SCORE */
+.score-box{
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:35px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.score-number{
+  font-size:60px;
+  font-weight:900;
+  color:var(--primary);
+}
+
+footer{
+  margin-top:60px;
+  padding:30px;
+  background:#111;
+  color:#aaa;
+  text-align:center;
+}
+
+.progress{
+  height:12px;
+  border-radius:20px;
+}
+
+.timer{
+  font-size:22px;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🍲 Kuis Kuliner Makassar</h1>
+  <p>Uji pengetahuanmu tentang makanan dan minuman khas Makassar</p>
+</div>
+
+<div class="container">
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+      <div>
+        <h5 class="mb-1">Progress Quiz</h5>
+        <div class="progress" style="width:250px;">
+          <div class="progress-bar bg-danger" id="progressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="timer" id="timer">
+        ⏳ 10:00
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BACK -->
+  <div class="mt-4">
+    <a href="kuis.php" class="btn btn-outline-dark">
+      ← Kembali
+    </a>
+  </div>
+
+  <!-- QUIZ -->
+  <form id="quizForm" class="mt-4">
+
+<!-- SOAL 1 -->
+<div class="q-card" id="q1">
+
+  <h5 class="fw-bold">
+    1. Kuliner paling ikonik Makassar yang kuahnya menggunakan air cucian beras dan sekitar 40 jenis rempah disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q1" value="A">
+    Sop Saudara
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q1" value="B">
+    Coto Makassar
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q1" value="C">
+    Pallubasa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q1" value="D">
+    Konro
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Coto Makassar dimasak dengan bumbu “Rampa Patangpulu” dan kuahnya memakai air tajin agar lebih kental.
+  </div>
+
+</div>
+
+<!-- SOAL 2 -->
+<div class="q-card" id="q2">
+
+  <h5 class="fw-bold">
+    2. Apa perbedaan utama yang paling mencolok antara hidangan Coto Makassar dan Pallubasa?
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q2" value="A">
+    Pallubasa menggunakan daging kerbau
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="B">
+    Pallubasa menggunakan campuran kelapa parut sangrai pada kuahnya
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="C">
+    Coto Makassar tidak menggunakan jeroan
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q2" value="D">
+    Coto Makassar dimakan dengan nasi putih
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Pallubasa memakai serundeng kelapa sangrai sehingga kuahnya lebih gurih dan pekat dibanding Coto.
+  </div>
+
+</div>
+
+<!-- SOAL 3 -->
+<div class="q-card" id="q3">
+
+  <h5 class="fw-bold">
+    3. Hidangan berupa iga sapi bakar atau rebus dengan kuah rempah berwarna gelap yang kaya akan kluwek adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q3" value="A">
+    Rawon
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="B">
+    Konro
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="C">
+    Sop Lidah
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q3" value="D">
+    Sop Ubi
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Konro adalah hidangan iga sapi khas Makassar dengan kuah hitam pekat dari kluwek.
+  </div>
+
+</div>
+
+<!-- SOAL 4 -->
+<div class="q-card" id="q4">
+
+  <h5 class="fw-bold">
+    4. Kudapan manis dari pisang raja yang dibungkus adonan tepung hijau dan disajikan dengan bubur sumsum disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q4" value="A">
+    Pisang Epe
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="B">
+    Barongko
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="C">
+    Pisang Ijo
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q4" value="D">
+    Pallu Butung
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: C</b><br>
+    Pisang Ijo memakai balutan tepung hijau khas pandan dan biasanya disajikan dingin.
+  </div>
+
+</div>
+
+<!-- SOAL 5 -->
+<div class="q-card" id="q5">
+
+  <h5 class="fw-bold">
+    5. Makanan tradisional dari pisang, telur, santan, dan gula yang dikukus dalam daun pisang disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q5" value="A">
+    Barongko
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="B">
+    Sanggara Belanda
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="C">
+    Katrisala
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q5" value="D">
+    Cucuru Bayao
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: A</b><br>
+    Barongko dahulu dikenal sebagai makanan penutup bangsawan Kerajaan Gowa.
+  </div>
+
+</div>
+
+<!-- SOAL 6 -->
+<div class="q-card" id="q6">
+
+  <h5 class="fw-bold">
+    6. Pisang bakar yang dipenyet hingga pipih lalu diberi topping gula merah cair disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q6" value="A">
+    Pisang Ijo
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="B">
+    Pisang Epe
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="C">
+    Sanggara Peppe
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q6" value="D">
+    Pisang Gapit
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    “Epe” berarti dijepit atau dipipihkan setelah dibakar di atas bara api.
+  </div>
+
+</div>
+
+<!-- SOAL 7 -->
+<div class="q-card" id="q7">
+
+  <h5 class="fw-bold">
+    7. Sup khas Makassar yang dicampur ubi goreng, mie, dan telur adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q7" value="A">
+    Sop Saudara
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="B">
+    Sop Ubi
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="C">
+    Sop Konro
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q7" value="D">
+    Sop Paru
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Sop Ubi menggunakan potongan singkong goreng sebagai ciri khas penyajiannya.
+  </div>
+
+</div>
+
+<!-- SOAL 8 -->
+<div class="q-card" id="q8">
+
+  <h5 class="fw-bold">
+    8. Kue tradisional Makassar yang sangat kaya akan kuning telur disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q8" value="A">
+    Kue Dange
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="B">
+    Cucuru Bayao
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="C">
+    Bijicappa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q8" value="D">
+    Bannang-bannang
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Cucuru Bayao memiliki rasa sangat manis karena menggunakan banyak kuning telur.
+  </div>
+
+</div>
+
+<!-- SOAL 9 -->
+<div class="q-card" id="q9">
+
+  <h5 class="fw-bold">
+    9. Sambal mangga muda khas Makassar yang biasa disajikan bersama ikan bakar disebut...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q9" value="A">
+    Sambal Terasi
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="B">
+    Raca' Taipa
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="C">
+    Sambal Matah
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q9" value="D">
+    Sambal Dabu-dabu
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: B</b><br>
+    Raca’ Taipa dibuat dari cacahan mangga muda, cabai, dan terasi khas Makassar.
+  </div>
+
+</div>
+
+<!-- SOAL 10 -->
+<div class="q-card" id="q10">
+
+  <h5 class="fw-bold">
+    10. Minuman tradisional Makassar yang terkenal menghangatkan tubuh pada malam hari adalah...
+  </h5>
+
+  <label class="option">
+    <input type="radio" name="q10" value="A">
+    Bajigur
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="B">
+    Bandrek
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="C">
+    Sarabba
+  </label>
+
+  <label class="option">
+    <input type="radio" name="q10" value="D">
+    Bir Pletok
+  </label>
+
+  <div class="explanation">
+    <b>Jawaban: C</b><br>
+    Sarabba dibuat dari jahe, gula merah, santan, dan kadang dicampur kuning telur.
+  </div>
+
+</div>
+
+<div class="text-center mb-5">
+
+  <button type="button" class="btn-main" onclick="submitQuiz()">
+    Submit Quiz
+  </button>
+
+</div>
+
+</form>
+
+<!-- SCORE -->
+<div class="score-box mb-5" id="scoreBox">
+
+  <div class="score-number" id="scoreNumber">
+    0/10
+  </div>
+
+  <h3 class="fw-bold mt-3" id="scoreMessage"></h3>
+
+  <p class="text-muted" id="scorePercent"></p>
+
+  <button onclick="location.reload()" class="btn-main mt-3">
+    Ulangi Quiz
+  </button>
+
+</div>
+
+</div>
+
+<footer>
+  © 2026 Balla Makassar
+</footer>
+
+<script>
+
+const answers = {
+  q1:"B",
+  q2:"B",
+  q3:"B",
+  q4:"C",
+  q5:"A",
+  q6:"B",
+  q7:"B",
+  q8:"B",
+  q9:"B",
+  q10:"C"
+};
+
+let totalQuestions = Object.keys(answers).length;
+
+/* ================= PROGRESS ================= */
+
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+
+  radio.addEventListener('change', updateProgress);
+
+});
+
+function updateProgress(){
+
+  let answered = 0;
+
+  for(let q in answers){
+
+    if(document.querySelector(`input[name="${q}"]:checked`)){
+      answered++;
+    }
+
+  }
+
+  let percent = (answered / totalQuestions) * 100;
+
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+/* ================= TIMER ================= */
+
+let timeLeft = 600;
+
+const timer = setInterval(() => {
+
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  document.getElementById("timer").innerHTML =
+    `⏳ ${minutes}:${seconds}`;
+
+  timeLeft--;
+
+  if(timeLeft < 0){
+
+    clearInterval(timer);
+
+    alert("Waktu habis! Quiz akan otomatis disubmit.");
+
+    submitQuiz(true);
+
+  }
+
+},1000);
+
+/* ================= SUBMIT ================= */
+
+function submitQuiz(forceSubmit = false){
+
+  let unanswered = [];
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    if(!selected){
+      unanswered.push(q);
+    }
+
+  }
+
+  if(unanswered.length > 0 && !forceSubmit){
+
+    alert(
+      `Masih ada ${unanswered.length} soal yang belum dijawab!`
+    );
+
+    document.getElementById(unanswered[0])
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    return;
+  }
+
+  clearInterval(timer);
+
+  let score = 0;
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    const card =
+      document.getElementById(q);
+
+    const explanation =
+      card.querySelector(".explanation");
+
+    explanation.style.display = "block";
+
+    const options =
+      card.querySelectorAll(".option");
+
+    options.forEach(opt => {
+
+      const input =
+        opt.querySelector("input");
+
+      input.disabled = true;
+
+      if(input.value === answers[q]){
+
+        opt.classList.add("correct-answer");
+
+      }
+
+      if(
+        selected &&
+        selected.value === input.value &&
+        selected.value !== answers[q]
+      ){
+
+        opt.classList.add("wrong-answer");
+
+      }
+
+    });
+
+    if(selected && selected.value === answers[q]){
+
+      score++;
+
+      card.classList.add("correct");
+
+    }else{
+
+      card.classList.add("wrong");
+
+    }
+
+  }
+
+  const percent =
+    Math.round((score / totalQuestions) * 100);
+
+  let message = "";
+
+  if(percent >= 90){
+
+    message = "🔥 Luar biasa!";
+
+  }
+  else if(percent >= 70){
+
+    message = "👏 Bagus sekali!";
+
+  }
+  else if(percent >= 50){
+
+    message = "👍 Cukup baik!";
+
+  }
+  else{
+
+    message = "📚 Yuk belajar lagi!";
+
+  }
+
+  document.getElementById("scoreBox")
+    .style.display = "block";
+
+  document.getElementById("scoreNumber")
+    .innerHTML = `${score}/${totalQuestions}`;
+
+  document.getElementById("scoreMessage")
+    .innerHTML = message;
+
+  document.getElementById("scorePercent")
+    .innerHTML =
+      `Kamu mendapatkan ${percent}%`;
+
+  localStorage.setItem(
+    "kuisKulinerScore",
+    score
+  );
+
+  document.getElementById("scoreBox")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+</script>
+
+</body>
+</html>

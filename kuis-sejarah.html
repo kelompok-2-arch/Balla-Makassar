@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kuis Sejarah Makassar</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#7b1e2b;
+  --secondary:#b32639;
+  --light:#f5f5f5;
+}
+
+body{
+  background: linear-gradient(to bottom,#f5f5f5,#ececec);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HERO */
+.header{
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:70px 20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.header::before{
+  content:'';
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  top:-100px;
+  right:-100px;
+}
+
+.header h1{
+  font-weight:800;
+  position:relative;
+  z-index:2;
+}
+
+.header p{
+  position:relative;
+  z-index:2;
+}
+
+/* INFO BAR */
+.info-bar{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  margin-top:-30px;
+  position:relative;
+  z-index:10;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* QUESTION CARD */
+.q-card{
+  background:white;
+  border:none;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.q-card:hover{
+  transform:translateY(-5px);
+}
+
+.q-card.correct{
+  border-left:8px solid #28a745;
+}
+
+.q-card.wrong{
+  border-left:8px solid #dc3545;
+}
+
+.option{
+  display:block;
+  padding:14px;
+  border:2px solid #eee;
+  border-radius:12px;
+  margin-top:12px;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.option:hover{
+  background:#fafafa;
+  border-color:var(--secondary);
+}
+
+.option.correct-answer{
+  background:#d4edda;
+  border-color:#28a745;
+}
+
+.option.wrong-answer{
+  background:#f8d7da;
+  border-color:#dc3545;
+}
+
+/* EXPLANATION */
+.explanation{
+  display:none;
+  margin-top:18px;
+  padding:16px;
+  background:#fafafa;
+  border-left:5px solid var(--primary);
+  border-radius:10px;
+}
+
+/* BUTTON */
+.btn-main{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  border:none;
+  padding:14px 35px;
+  border-radius:14px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.btn-main:hover{
+  transform:scale(1.03);
+}
+
+/* SCORE */
+.score-box{
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:35px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.score-number{
+  font-size:60px;
+  font-weight:900;
+  color:var(--primary);
+}
+
+footer{
+  margin-top:60px;
+  padding:30px;
+  background:#111;
+  color:#aaa;
+  text-align:center;
+}
+
+.progress{
+  height:12px;
+  border-radius:20px;
+}
+
+.timer{
+  font-size:22px;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🏛️ Kuis Sejarah Makassar</h1>
+  <p>Uji wawasanmu tentang sejarah dan tokoh penting Makassar</p>
+</div>
+
+<div class="container">
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+      <div>
+        <h5 class="mb-1">Progress Quiz</h5>
+        <div class="progress" style="width:250px;">
+          <div class="progress-bar bg-danger" id="progressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="timer" id="timer">
+        ⏳ 10:00
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BACK -->
+  <div class="mt-4">
+    <a href="kuis.php" class="btn btn-outline-dark">
+      ← Kembali
+    </a>
+  </div>
+
+  <!-- QUIZ -->
+  <form id="quizForm" class="mt-4">
+
+    <!-- SOAL 1 -->
+    <div class="q-card" id="q1">
+
+      <h5 class="fw-bold">
+        1. Raja Gowa ke-16 yang mendapat julukan "Ayam Jantan dari Timur" adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q1" value="A">
+        Sultan Alauddin
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="B">
+        Sultan Hasanuddin
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="C">
+        Sultan Malikussaid
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q1" value="D">
+        Karaeng Pattingalloang
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Sultan Hasanuddin dijuluki "Ayam Jantan dari Timur" karena keberaniannya melawan VOC Belanda.
+      </div>
+
+    </div>
+
+    <!-- SOAL 2 -->
+    <div class="q-card" id="q2">
+
+      <h5 class="fw-bold">
+        2. Benteng yang kemudian berganti nama menjadi Fort Rotterdam adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q2" value="A">
+        Benteng Somba Opu
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q2" value="B">
+        Benteng Tosora
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q2" value="C">
+        Benteng Ujung Pandang
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q2" value="D">
+        Benteng Sanrobone
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: C</b><br>
+        Benteng Ujung Pandang diubah menjadi Fort Rotterdam oleh Cornelis Speelman.
+      </div>
+
+    </div>
+
+    <!-- SOAL 3 -->
+    <div class="q-card" id="q3">
+
+      <h5 class="fw-bold">
+        3. Perjanjian yang menandai kekalahan Gowa terhadap VOC disebut...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q3" value="A">
+        Perjanjian Giyanti
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q3" value="B">
+        Perjanjian Salatiga
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q3" value="C">
+        Perjanjian Bongaya
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q3" value="D">
+        Perjanjian Saragosa
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: C</b><br>
+        Perjanjian Bongaya memperkuat dominasi VOC di Makassar sejak tahun 1667.
+      </div>
+
+    </div>
+
+    <!-- SOAL 4 -->
+    <div class="q-card" id="q4">
+
+      <h5 class="fw-bold">
+        4. Nama resmi Kota Makassar pada masa Orde Baru adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q4" value="A">
+        Somba Opu
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q4" value="B">
+        Mangkasara
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q4" value="C">
+        Ujung Pandang
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q4" value="D">
+        Gowa Riaja
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: C</b><br>
+        Nama Ujung Pandang digunakan dari tahun 1971 hingga 1999 sebelum kembali menjadi Makassar.
+      </div>
+
+    </div>
+
+    <!-- SOAL 5 -->
+    <div class="q-card" id="q5">
+
+      <h5 class="fw-bold">
+        5. Tokoh intelektual Gowa yang dikenal sebagai "Manusia Renaisans" adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q5" value="A">
+        Arung Palakka
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="B">
+        Karaeng Pattingalloang
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="C">
+        Sultan Zainal Abidin
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q5" value="D">
+        Syekh Yusuf
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Karaeng Pattingalloang menguasai berbagai bahasa asing dan ilmu pengetahuan Eropa.
+      </div>
+
+    </div>
+
+    <!-- SOAL 6 -->
+    <div class="q-card" id="q6">
+
+      <h5 class="fw-bold">
+        6. Tiga ulama Minangkabau penyebar Islam di Gowa-Tallo dikenal sebagai...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q6" value="A">
+        Wali Songo
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q6" value="B">
+        Dato’ Tallua
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q6" value="C">
+        Sayyid Al-Bakri
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q6" value="D">
+        Mufti Besar
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Dato’ Tallua berhasil mengislamkan Raja Gowa dan Raja Tallo pada awal abad ke-17.
+      </div>
+
+    </div>
+
+    <!-- SOAL 7 -->
+    <div class="q-card" id="q7">
+
+      <h5 class="fw-bold">
+        7. Kapal tradisional Sulawesi Selatan yang terkenal hingga dunia adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q7" value="A">
+        Kapal Jung
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q7" value="B">
+        Kapal Phinisi
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q7" value="C">
+        Kapal Kora-Kora
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q7" value="D">
+        Kapal Jukung
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Kapal Phinisi menjadi simbol kehebatan pelaut Makassar dan Bugis.
+      </div>
+
+    </div>
+
+    <!-- SOAL 8 -->
+    <div class="q-card" id="q8">
+
+      <h5 class="fw-bold">
+        8. Ulama asal Makassar yang dibuang Belanda ke Afrika Selatan adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q8" value="A">
+        Tuanku Imam Bonjol
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="B">
+        Syekh Yusuf Al-Makassari
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="C">
+        Pangeran Diponegoro
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="D">
+        Sultan Baabullah
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: B</b><br>
+        Syekh Yusuf menjadi tokoh penting Islam dan perjuangan anti kolonial hingga diasingkan ke Afrika Selatan.
+      </div>
+
+    </div>
+
+    <!-- SOAL 9 -->
+    <div class="q-card" id="q9">
+
+      <h5 class="fw-bold">
+        9. Pahlawan wanita Sulawesi Selatan yang aktif melawan Belanda adalah...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q9" value="A">
+        Martha Christina Tiahahu
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q9" value="B">
+        Cut Nyak Dhien
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q9" value="C">
+        Opu Daeng Risadju
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q9" value="D">
+        Dewi Sartika
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: C</b><br>
+        Opu Daeng Risadju tetap memimpin perjuangan rakyat meskipun mengalami penyiksaan dan penjara.
+      </div>
+
+    </div>
+
+    <!-- SOAL 10 -->
+    <div class="q-card" id="q10">
+
+      <h5 class="fw-bold">
+        10. Operasi pembantaian rakyat Sulawesi Selatan tahun 1946-1947 dipimpin oleh...
+      </h5>
+
+      <label class="option">
+        <input type="radio" name="q10" value="A">
+        Raymond Westerling
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="B">
+        Van Mook
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="C">
+        Cornelis Speelman
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="D">
+        J.P. Coen
+      </label>
+
+      <div class="explanation">
+        <b>Jawaban: A</b><br>
+        Raymond Westerling memimpin operasi militer yang dikenal sebagai Tragedi 40.000 Jiwa.
+      </div>
+
+    </div>
+
+    <div class="text-center mb-5">
+
+      <button type="button" class="btn-main" onclick="submitQuiz()">
+        Submit Quiz
+      </button>
+
+    </div>
+
+  </form>
+
+  <!-- SCORE -->
+  <div class="score-box mb-5" id="scoreBox">
+
+    <div class="score-number" id="scoreNumber">
+      0/10
+    </div>
+
+    <h3 class="fw-bold mt-3" id="scoreMessage"></h3>
+
+    <p class="text-muted" id="scorePercent"></p>
+
+    <button onclick="location.reload()" class="btn-main mt-3">
+      Ulangi Quiz
+    </button>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Balla Makassar
+</footer>
+
+<script>
+
+const answers = {
+  q1:"B",
+  q2:"C",
+  q3:"C",
+  q4:"C",
+  q5:"B",
+  q6:"B",
+  q7:"B",
+  q8:"B",
+  q9:"C",
+  q10:"A"
+};
+
+let totalQuestions = Object.keys(answers).length;
+
+/* ================= PROGRESS ================= */
+
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+
+  radio.addEventListener('change', updateProgress);
+
+});
+
+function updateProgress(){
+
+  let answered = 0;
+
+  for(let q in answers){
+
+    if(document.querySelector(`input[name="${q}"]:checked`)){
+      answered++;
+    }
+
+  }
+
+  let percent = (answered / totalQuestions) * 100;
+
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+/* ================= TIMER ================= */
+
+let timeLeft = 600;
+
+const timer = setInterval(() => {
+
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  document.getElementById("timer").innerHTML =
+    `⏳ ${minutes}:${seconds}`;
+
+  timeLeft--;
+
+  if(timeLeft < 0){
+
+    clearInterval(timer);
+
+    alert("Waktu habis! Quiz akan otomatis disubmit.");
+
+    submitQuiz(true);
+
+  }
+
+},1000);
+
+/* ================= SUBMIT ================= */
+
+function submitQuiz(forceSubmit = false){
+
+  let unanswered = [];
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    if(!selected){
+      unanswered.push(q);
+    }
+
+  }
+
+  if(unanswered.length > 0 && !forceSubmit){
+
+    alert(
+      `Masih ada ${unanswered.length} soal yang belum dijawab!`
+    );
+
+    document.getElementById(unanswered[0])
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    return;
+  }
+
+  clearInterval(timer);
+
+  let score = 0;
+
+  for(let q in answers){
+
+    const selected =
+      document.querySelector(`input[name="${q}"]:checked`);
+
+    const card =
+      document.getElementById(q);
+
+    const explanation =
+      card.querySelector(".explanation");
+
+    explanation.style.display = "block";
+
+    const options =
+      card.querySelectorAll(".option");
+
+    options.forEach(opt => {
+
+      const input =
+        opt.querySelector("input");
+
+      input.disabled = true;
+
+      if(input.value === answers[q]){
+
+        opt.classList.add("correct-answer");
+
+      }
+
+      if(
+        selected &&
+        selected.value === input.value &&
+        selected.value !== answers[q]
+      ){
+
+        opt.classList.add("wrong-answer");
+
+      }
+
+    });
+
+    if(selected && selected.value === answers[q]){
+
+      score++;
+
+      card.classList.add("correct");
+
+    }else{
+
+      card.classList.add("wrong");
+
+    }
+
+  }
+
+  const percent =
+    Math.round((score / totalQuestions) * 100);
+
+  let message = "";
+
+  if(percent >= 90){
+
+    message = "🔥 Luar biasa!";
+
+  }
+  else if(percent >= 70){
+
+    message = "👏 Bagus sekali!";
+
+  }
+  else if(percent >= 50){
+
+    message = "👍 Cukup baik!";
+
+  }
+  else{
+
+    message = "📚 Yuk belajar lagi!";
+
+  }
+
+  document.getElementById("scoreBox")
+    .style.display = "block";
+
+  document.getElementById("scoreNumber")
+    .innerHTML = `${score}/${totalQuestions}`;
+
+  document.getElementById("scoreMessage")
+    .innerHTML = message;
+
+  document.getElementById("scorePercent")
+    .innerHTML =
+      `Kamu mendapatkan ${percent}%`;
+
+  localStorage.setItem(
+    "kuisSejarahScore",
+    score
+  );
+
+  document.getElementById("scoreBox")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+</script>
+
+</body>
+</html>

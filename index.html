@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Balla Makassar</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===== QUIZ FEATURED CARD ===== */
+    .quiz-featured {
+      background: linear-gradient(135deg, #7b1e2b, #b32639);
+      border-radius: 20px;
+      transform: scale(1.02);
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .quiz-featured:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* optional supaya navbar tidak nutup hero */
+    body {
+      padding-top: 70px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+  <div class="container">
+    <a class="navbar-brand brand-logo" href="#">Balla Makassar</a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto gap-3">
+
+        <li class="nav-item"><a class="nav-link" href="#aspek">Aspek Budaya</a></li>
+
+        <li class="nav-item">
+          <a href="logout.php" class="btn btn-sm btn-danger">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero d-flex align-items-center">
+  <div class="container text-white">
+    <h1>Balla Makassar</h1>
+    <p>Mengenal Kearifan dan Budaya Makassar</p>
+    <a href="overview.html" class="btn btn-maroon btn-lg mt-3">
+      Jelajahi Sekarang
+    </a>
+  </div>
+</section>
+
+<!-- ================= ASPEK BUDAYA ================= -->
+<section id="aspek" class="py-5">
+  <div class="container">
+    <h3 class="mb-4 text-center">Aspek Budaya Makassar</h3>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Sejarah -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card custom-card h-100 shadow-sm">
+          <img src="assets/images/filosofi.jpg" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="fw-bold">Sejarah & Filosofi</h5>
+            <small class="text-muted mb-2">Akar nilai kehidupan</small>
+            <p class="flex-grow-1">
+              Sejarah Makassar dari kerajaan hingga modern.
+            </p>
+            <a href="aspek-sejarah.html" class="btn btn-maroon btn-sm mt-auto">Jelajahi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Adat -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card custom-card h-100 shadow-sm">
+          <img src="assets/images/tradisi.jpg" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="fw-bold">Adat & Tradisi</h5>
+            <small class="text-muted mb-2">Ritual turun-temurun</small>
+            <p class="flex-grow-1">
+              Struktur adat dan upacara tradisional.
+            </p>
+            <a href="aspek-adat.html" class="btn btn-maroon btn-sm mt-auto">Jelajahi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seni -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card custom-card h-100 shadow-sm">
+          <img src="assets/images/seni.jpg" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="fw-bold">Seni & Budaya</h5>
+            <small class="text-muted mb-2">Ekspresi budaya</small>
+            <p class="flex-grow-1">
+              Tari, musik, dan kerajinan khas Makassar.
+            </p>
+            <a href="aspek-seni.html" class="btn btn-maroon btn-sm mt-auto">Jelajahi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bahasa -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card custom-card h-100 shadow-sm">
+          <img src="assets/images/bahasa.jpg" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="fw-bold">Bahasa & Sastra</h5>
+            <small class="text-muted mb-2">Identitas linguistik</small>
+            <p class="flex-grow-1">
+              Bahasa Makassar & aksara lontara.
+            </p>
+            <a href="aspek-bahasa.html" class="btn btn-maroon btn-sm mt-auto">Jelajahi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kuliner -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card custom-card h-100 shadow-sm">
+          <img src="assets/images/kuliner.jpg" class="card-img-top" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="fw-bold">Kuliner Khas</h5>
+            <small class="text-muted mb-2">Cita rasa lokal</small>
+            <p class="flex-grow-1">
+              Coto Makassar, Konro, Pallubasa.
+            </p>
+            <a href="aspek-kuliner.html" class="btn btn-maroon btn-sm mt-auto">Jelajahi</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED QUIZ ================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="quiz-featured p-5 d-flex flex-column flex-md-row align-items-center justify-content-between shadow-lg">
+
+      <div class="mb-3 mb-md-0">
+        <h2 class="fw-bold">🔥 Kuis Budaya Makassar</h2>
+        <p class="mb-0">
+          Uji pengetahuanmu tentang budaya Makassar secara interaktif.
+        </p>
+      </div>
+
+      <a href="kuis.php" class="btn btn-light btn-lg fw-bold px-4">
+        Mulai Kuis
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="text-center py-3">
+  © 2026 Balla Makassar
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
